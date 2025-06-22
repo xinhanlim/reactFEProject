@@ -1,10 +1,12 @@
 import {useState} from 'react'
+import { Link, useLocation } from 'wouter'
 
 const Navbar = () => {
     const [isNavbarShowing, setNavbarShowing] = useState(false);
     const toggleNavbar = () => {
         setNavbarShowing(!isNavbarShowing)
     }
+    const [location] = useLocation();
  return (
     <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,17 +26,14 @@ const Navbar = () => {
         </button>
         <div className={`collapse navbar-collapse ${isNavbarShowing ? "show" : ""}`} id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+          <li className="nav-item">
+           <Link href="/" className={`nav-link ${location === '/' ? 'active' : ''}`}> Home </Link>
+           </li>
+           <li className="nav-item">
+              <Link href="/products" className={`nav-link ${location === '/products' ? 'active' : ''}`}> Products </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Products</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Contact</a>
+              <Link className={` nav-link ${location === '/RegisterPage' ? 'active' : "" } `}  href="/RegisterPage" >Register</Link>
             </li>
           </ul>
         </div>
