@@ -14,7 +14,6 @@ export default function RegisterPage(){
       };
 
     const handleSubmit = (values, formikHelpers) => {
-        console.log('Form values', values);
         formikHelpers.setSubmitting(false);
       }
     
@@ -31,7 +30,7 @@ export default function RegisterPage(){
         confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Confirm Password is required'),
-        salutationun: Yup.string().required('Salutation is required'),
+        salutation: Yup.string().required('Salutation is required'),
         country: Yup.string().required('Country is required'),
       })
 
