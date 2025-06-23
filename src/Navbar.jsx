@@ -30,7 +30,7 @@ const Navbar = () => {
            <Link href="/" className={`nav-link ${location === '/' ? 'active' : ''}`}> Home </Link>
            </li>
            <li className="nav-item">
-              <Link href="/products" className={`nav-link ${location === '/products' ? 'active' : ''}`}> Products </Link>
+              <Link href="/ProductPage" className={`nav-link ${location === '/ProductPage' ? 'active' : ''}`}> Products </Link>
             </li>
             <li className="nav-item">
               <Link className={` nav-link ${location === '/RegisterPage' ? 'active' : "" } `}  href="/RegisterPage" >Register</Link>
