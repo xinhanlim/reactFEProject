@@ -1,8 +1,34 @@
 import React from 'react'
 import Header from './Header'
 import ProductCard from './ProductCard'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export default function Homepage(){
+
+  const { featuredProducts, setFeaturedProducts } = useState([]);
+
+  useEffect(()=> {
+    try{
+      const getFeaturedProducts = async () => {
+      const response = await axios.get('./featured.json');
+      setFeaturedProducts(response.data);
+      }
+
+      getFeaturedProducts();
+
+    }catch(e){
+      console.log("error");
+    }
+  }, [])
+
+    const renderFeaturedProduct = () => {
+      const featuredProduct = [];
+      for (product of featuredProduct) {
+        featuredProduct.push()
+      }
+    }
+
     return (
     <>
     <Header/>
