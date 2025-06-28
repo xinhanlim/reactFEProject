@@ -1,33 +1,39 @@
 import { atom, useAtom } from 'jotai'
 
 export const flashMessageAtom = atom({
-    message: '',
+    message: ' ',
     type: 'info'
 })
 
 export const useFlashMessage = () => {
-    const { flashMessage, setFlashMassage } = useAtom(flashMessageAtom);
+    const [flashMessage, setFlashMessage] = useAtom(flashMessageAtom);
 
-    const showFlashMassage = (message, type) => {
-        if( message && ["info", "success", "danger"].includes('type')){
-            setFlashMassage({
-                'message': message ,
+    const showFlashMessage = (message, type) => {
+        if( message && ["info", "success", "danger"].includes(type)){
+            setFlashMessage(
+                {
+                'message': message,
                 'type': type
-            })
+                  }
+             )
         }
+
+        setTimeout(() => {
+            clearFlashMessage();
+        },30000)
     }
 
-    const clearFlashMassage = () => {
-        setFlashMassage(message = '', type = 'info')
+    const clearFlashMessage = () => {
+        setFlashMessage( {'message':'', 'type':'info'} )
     };
 
-    const getFlashMassage = () => {
+    const getFlashMessage = () => {
         return flashMessage;
     }
 
     return {
-        showFlashMassage,
-        clearFlashMassage,
-        getFlashMassage
+        showFlashMessage,
+        clearFlashMessage,
+        getFlashMessage,
     }
 }
