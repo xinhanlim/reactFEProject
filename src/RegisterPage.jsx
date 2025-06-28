@@ -1,8 +1,12 @@
 import React from 'react'
 import { Formik, Field, Form} from 'formik'
 import * as Yup from 'yup'
+import { useFlashMessage } from './FlashMessageStore';
+import { useLocation} from 'wouter'
 
 export default function RegisterPage(){
+    const {showMessage} = useFlashMessage();
+    const [_, setLocation] = useLocation;
     const initialValues = {
         name: '',
         email: '',
@@ -35,6 +39,11 @@ export default function RegisterPage(){
       })
 
 
+    setTimeout(function() {
+      formikHelpers.setSubmitting(false);
+      showMessage("You Been Registered Hooray!", "success")
+      setLocation('/');
+    }, 500)
 
     return (
     <>
