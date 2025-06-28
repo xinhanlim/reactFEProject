@@ -6,12 +6,12 @@ import axios from 'axios'
 
 export default function Homepage() {
 
-  const { featuredProducts, setFeaturedProducts } = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
 
   useEffect(() => {
     try {
       const getFeaturedProducts = async () => {
-        const response = await axios.get('./featured.json');
+        const response = await axios.get('/featured.json');
         setFeaturedProducts(response.data);
       }
       getFeaturedProducts();
@@ -25,7 +25,19 @@ return(
   <Header />
   <main className="container my-5">
     <h2 className="text-center mb-4">Featured Products</h2>
-    <div className="row">
+    {
+      featuredProducts.map(f => (
+        <div key ={f.id}>
+        <ProductCard 
+        image = {f.image}
+        name={f.name}
+        price = {f.price}
+        />
+        </div>
+
+      ))
+    }
+    {/* <div className="row">
       <div className="col-md-3 mb-4">
         <ProductCard
           imageUrl="https://picsum.photos/id/20/300/200"
@@ -54,7 +66,7 @@ return(
           price={49.99}
         />
       </div>
-    </div>
+    </div> */}
   </main>
 </>
 )
