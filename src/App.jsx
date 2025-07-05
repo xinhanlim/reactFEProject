@@ -5,11 +5,15 @@ import RegisterPage from './RegisterPage'
 import Footer from './Footer';
 import { Route, Switch } from 'wouter'
 import Navbar from './Navbar';
+import FlashMessage from './FlashMessage'
+
 
 export default function App(){
   return (
     <>
     <Navbar/>
+    <FlashMessage/>
+
     <Switch>
         <Route path ='/' component={Homepage}/>
         <Route path ='/ProductPage' component={ProductPage}/>

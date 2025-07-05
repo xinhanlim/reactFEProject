@@ -1,7 +1,7 @@
 import { atom, useAtom } from 'jotai'
 
 export const flashMessageAtom = atom({
-    message: ' ',
+    message: '',
     type: 'info'
 })
 

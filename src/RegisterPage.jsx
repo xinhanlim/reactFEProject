@@ -42,7 +42,7 @@ export default function RegisterPage() {
       formikHelpers.setSubmitting(false);
       showFlashMessage('You Been Registered Hooray!', 'success');
       setLocation('/');
-    }, 5000)
+    })
   }
 
   return (
