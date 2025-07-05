@@ -6,6 +6,7 @@ import Footer from './Footer';
 import { Route, Switch } from 'wouter'
 import Navbar from './Navbar';
 import FlashMessage from './FlashMessage'
+import ShoppingCart from './ShoppingCart';
 
 
 export default function App(){
@@ -17,7 +18,9 @@ export default function App(){
     <Switch>
         <Route path ='/' component={Homepage}/>
         <Route path ='/ProductPage' component={ProductPage}/>
+        <Route path ='/ShoppingCart' component={ShoppingCart}/>
         <Route path ='/RegisterPage' component={RegisterPage}/>
+
     </Switch>
    <Footer/>
     </>

@@ -1,11 +1,23 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductCard from './ProductCard'
+import { useCart } from './CartStore';
+import { useLocation } from 'wouter';
+import { useFlashMessage } from './FlashMessageStore';
 
 
 export default function ProductPage() {
 
   const [ products, setProducts ] = useState([]);
+  const {addToCart} = useCart();
+  const [_,setLocation] = useLocation();
+  const { showFlashMessage} = useFlashMessage();
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    showFlashMessage("Product added to cart", "success");
+    setLocation("/ShoppingCart");
+}
 
   useEffect(() => {
       try {
@@ -32,6 +44,9 @@ export default function ProductPage() {
                 image={p.image}
                 name={p.name}
                 price={p.price.toFixed(2)}
+                onAddToCart={()=>{
+                  handleAddToCart(p)
+                }}
               />
             </div>
           )

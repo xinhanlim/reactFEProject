@@ -6,9 +6,10 @@ export default function ProductCard(props){
       <div className="card-body">
         <h5 className="card-title">{props.product}</h5>
         <p className="card-text">${props.price}</p>
-        <button className="btn btn-primary">
-          Add to Cart
-        </button>
+        <a href ="#" className="btn btn-primary" onClick={()=>{
+          console.log("Product Added")
+          props.onAddToCart();
+        }}>Add To Cart</a>
       </div>
     </div>
     </>
