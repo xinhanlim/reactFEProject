@@ -1,16 +1,16 @@
 import { atom, useAtom } from 'jotai'
 
-// const initialCart = [
-//     {
-//         "id": 1,
-//         "product_id": 1,
-//         "quantity": 10,
-//         "product_name": "Organic Green Tea",
-//         "price": 12.99,
-//         "image_url": "https://picsum.photos/id/225/300/200",
-//         "description": "Premium organic green tea leaves, rich in antioxidants and offering a smooth, refreshing taste."
-//       }
-// ]
+const initialCart = [
+    {
+        "id": 1,
+        "product_id": 1,
+        "quantity": 10,
+        "product_name": "Organic Green Tea",
+        "price": 12.99,
+        "image_url": "https://picsum.photos/id/225/300/200",
+        "description": "Premium organic green tea leaves, rich in antioxidants and offering a smooth, refreshing taste."
+      }
+]
 
 export const cartAtom = atom(initialCart);
 
@@ -48,15 +48,24 @@ export const useCart = () => {
         if(quantity < 1){
             return;
         }
-        const exisitingCartItem = cart.find(currentItem = currentItem.id === product.id)
-        const clonedCartItem = {...exisitingCartItem, "quantity": quantity}
-        
+        const exisitingCartItem = cart.find(currentItem => currentItem.product_id === product_id)
+        const clonedCartItem = {...exisitingCartItem, "quantity": quantity};
+        const cloned = cart.map(currentCartItem => {
+            if(currentCartItem.product_id !== clonedCartItem.product_id){
+                return currentCartItem
+            } else {
+                return clonedCartItem;
+            }
+        })
+        setCart(cloned);
+
     
     }
     return {
         cart,
         getCartTotal,
-        addToCart
+        addToCart,
+        modifyQuantity
     }
 }
 
