@@ -61,11 +61,18 @@ export const useCart = () => {
 
     
     }
+
+    const removeCart = ( product_id ) =>{
+        const exisitingCart = cart.find(ec => ec.product_id === product_id);
+        const cloned = cart.filter(cci => cci.product_id !== exisitingCart.product_id)
+        setCart(cloned);
+    }
     return {
         cart,
         getCartTotal,
         addToCart,
-        modifyQuantity
+        modifyQuantity,
+        removeCart
     }
 }
 
