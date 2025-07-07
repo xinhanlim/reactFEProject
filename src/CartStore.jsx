@@ -21,7 +21,7 @@ export const useCart = () => {
         return cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
     };
     const addToCart = (product) =>{
-        const exisitingCart = cart.find(currentItem => currentItem.id === product.id);
+        const exisitingCart = cart.find(currentItem => currentItem.product_id === product.id);
 
         if(!exisitingCart){
             const newCartItem = {
@@ -51,7 +51,7 @@ export const useCart = () => {
         const exisitingCartItem = cart.find(currentItem => currentItem.product_id === product_id)
         const clonedCartItem = {...exisitingCartItem, "quantity": quantity};
         const cloned = cart.map(currentCartItem => {
-            if(currentCartItem.product_id !== clonedCartItem.product_id){
+            if(currentCartItem.id !== clonedCartItem.id){
                 return currentCartItem
             } else {
                 return clonedCartItem;
