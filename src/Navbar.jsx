@@ -11,7 +11,7 @@ const Navbar = () => {
     <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <a className="navbar-brand" href="#">E-Shop</a>
+      <Link href="/" className={`navbar-brand ${location === '/' ? 'active' : ''}`}> E-Shop </Link>
         <button
           className="navbar-toggler"
           type="button"
