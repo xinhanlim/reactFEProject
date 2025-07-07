@@ -1,15 +1,15 @@
 import { atom, useAtom } from 'jotai'
 
 const initialCart = [
-    {
-        "id": 1,
-        "product_id": 1,
-        "quantity": 10,
-        "product_name": "Organic Green Tea",
-        "price": 12.99,
-        "image_url": "https://picsum.photos/id/225/300/200",
-        "description": "Premium organic green tea leaves, rich in antioxidants and offering a smooth, refreshing taste."
-      }
+    // {
+    //     "id": 1,
+    //     "product_id": 1,
+    //     "quantity": 10,
+    //     "product_name": "Organic Green Tea",
+    //     "price": 12.99,
+    //     "image_url": "https://picsum.photos/id/225/300/200",
+    //     "description": "Premium organic green tea leaves, rich in antioxidants and offering a smooth, refreshing taste."
+    //   }
 ]
 
 export const cartAtom = atom(initialCart);
@@ -40,8 +40,6 @@ export const useCart = () => {
         else {
             modifyQuantity(exisitingCart.product_id, exisitingCart.quantity + 1)
         }
-
-
     }
 
     const modifyQuantity = (product_id, quantity) => {
