@@ -3,15 +3,28 @@ import Header from './Header'
 import ProductCard from './ProductCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useCart } from './CartStore';
+import { useLocation } from 'wouter';
+import { useFlashMessage } from './FlashMessageStore';
 
 export default function Homepage() {
 
   const [featuredProducts, setFeaturedProducts] = useState([]);
+  const {addToCart} = useCart();
+  const [_,setLocation] = useLocation();
+  const { showFlashMessage} = useFlashMessage();
+  
+
+  const handleAddToCart = (featuredProduct) => {
+    addToCart(featuredProduct);
+    showFlashMessage("Product added to cart", "success");
+    setLocation("/ShoppingCart");
+  }
 
   useEffect(() => {
     try {
       const getFeaturedProducts = async () => {
-        const response = await axios.get('/featured.json');
+        const response = await axios.get(import.meta.env.VITE_API_URL + "/api/products");
         setFeaturedProducts(response.data);
       }
       getFeaturedProducts();
@@ -33,7 +46,9 @@ return(
         image = {f.image}
         name={f.name}
         price = {f.price}
-        />
+        onAddToCart={()=>{
+          handleAddToCart(f)}
+        }/>
         </div>
       ))
     }

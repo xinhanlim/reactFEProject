@@ -6,12 +6,14 @@ import { useLocation } from 'wouter';
 import { useFlashMessage } from './FlashMessageStore';
 
 
+
 export default function ProductPage() {
 
   const [ products, setProducts ] = useState([]);
   const {addToCart} = useCart();
   const [_,setLocation] = useLocation();
   const { showFlashMessage} = useFlashMessage();
+  
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -22,7 +24,7 @@ export default function ProductPage() {
   useEffect(() => {
       try {
         const fetchProducts = async () => {
-        const response = await axios.get('/products.json');
+        const response = await axios.get(import.meta.env.VITE_API_URL + "/api/products");
         setProducts(response.data);
         } 
         fetchProducts();
