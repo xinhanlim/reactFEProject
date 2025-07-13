@@ -1,9 +1,11 @@
 import React from 'react'
 import { useCart } from './CartStore'
+import {useJwt} from './UserStore'
 
 const ShoppingCart = () => {
 
     const { cart, getCartTotal, modifyQuantity, removeCart } = useCart();
+    const {getJwt} = useJwt();
     return <div className="container mt-4" >
         <h2>Shopping Cart</h2>
         {cart.length === 0 ? (

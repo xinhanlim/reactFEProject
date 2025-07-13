@@ -3,6 +3,7 @@ import { Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
 import { useFlashMessage } from './FlashMessageStore';
 import { useLocation } from 'wouter'
+import axios from 'axios'
 
 export default function RegisterPage() {
 
@@ -36,13 +37,29 @@ export default function RegisterPage() {
     country: Yup.string().required('Country is required'),
   })
 
-  const handleSubmit = (values, formikHelpers) => {
+  const handleSubmit = async (values, formikHelpers) => {
     console.log("form values", values)
-    setTimeout(function () {
+    // setTimeout(function () {
+    //   formikHelpers.setSubmitting(false);
+    //   showFlashMessage('You Been Registered Hooray!', 'success');
+    //   setLocation('/');
+    // })
+    const {confirmPassword, marketingPreferences, ...restValues} = values;
+    const renameValues = {
+      ...restValues,
+      marketing_preferences: marketingPreferences
+    }
+    try{
+      const response = await axios.post(import.meta.env.VITE_API_URL + '/api/users/register', renameValues);
+      if(response.status == 200){
+        showFlashMessage("Your account has been created", "success");
+        setLocation('/')
+      }
+    } catch (e) {
+      showFlashMessage("Error registering", "error")
+    } finally {
       formikHelpers.setSubmitting(false);
-      showFlashMessage('You Been Registered Hooray!', 'success');
-      setLocation('/');
-    })
+    }
   }
 
   return (
@@ -93,12 +110,20 @@ export default function RegisterPage() {
               <div className="mb-3">
                 <label className="form-label">Marketing Preferences</label>
                 <div className="form-check">
-                  <Field className="form-check-input" value="marketing" type="checkbox" id="emailMarketing" name="marketingPreferences" />
-                  <label className="form-check-label" htmlFor="emailMarketing">Email Marketing</label>
+                  <Field className="form-check-input" value="Email Updates" type="checkbox" id="emailUpdates" name="marketingPreferences" />
+                  <label className="form-check-label" htmlFor="emailUpdates">Email Updates</label>
                 </div>
                 <div className="form-check">
-                  <Field className="form-check-input" value="sms" type="checkbox" id="smsMarketing" />
-                  <label className="form-check-label" htmlFor="smsMarketing" name="marketingPreferences">SMS Marketing</label>
+                  <Field className="form-check-input" value="SMS Promotions " type="checkbox" id="smsPromotions" name="marketingPreferences" />
+                  <label className="form-check-label" htmlFor="smsPromotions" name="marketingPreferences">SMS Promotions</label>
+                </div>
+                <div className="form-check">
+                  <Field className="form-check-input" value="Newsletter" type="checkbox" id="newsletter" name="marketingPreferences" />
+                  <label className="form-check-label" htmlFor="newsletter" name="marketingPreferences"> Newsletter</label>
+                </div>
+                <div className="form-check">
+                  <Field className="form-check-input" value="New Product Announcements" type="checkbox" id="newProductAnn" name="marketingPreferences" />
+                  <label className="form-check-label" htmlFor="newProductAnn" name="marketingPreferences"> New Product Announcements</label>
                 </div>
                 {formik.errors.marketingPreferences && formik.touched.marketingPreferences ? <div className="text-danger">{formik.errors.marketingPreferences}</div> : null}
               </div>
@@ -106,10 +131,10 @@ export default function RegisterPage() {
                 <label htmlFor="country" className="form-label">Country</label>
                 <Field as='select' className="form-select" id="country" name="country">
                   <option value="">Select Country</option>
-                  <option value="sg">Singapore</option>
-                  <option value="my">Malaysia</option>
-                  <option value="in">Indonesia</option>
-                  <option value="th">Thailand</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="Malaysia">Malaysia</option>
+                  <option value="Indonesia">Indonesia</option>
+                  <option value="Thailand">Thailand</option>
                 </Field>
                 {formik.errors.country && formik.touched.country ? <div className="text-danger">{formik.errors.country}</div> : null}
               </div>
