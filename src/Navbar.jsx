@@ -48,6 +48,9 @@ const Navbar = () => {
               </li>
               {jwt ? (
                 <>
+                <li className="nav-item">
+                    <Link href="/profile" className={`nav-link ${location === '/Profile' ? 'active' : ''}`}>Profile</Link>
+                  </li>
                   <li className="nav-item">
                     <button onClick={handleLogout} className="btn btn-link nav-link">Logout</button>
                   </li>

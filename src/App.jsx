@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 import FlashMessage from './FlashMessage'
 import ShoppingCart from './ShoppingCart';
 import UserLogin from './Login';
+import Profile from './Profile';
 
 
 export default function App(){
@@ -22,6 +23,7 @@ export default function App(){
         <Route path ='/ShoppingCart' component={ShoppingCart}/>
         <Route path ='/RegisterPage' component={RegisterPage}/>
         <Route path ='/login' component={UserLogin} />
+        <Route path ='/profile' component={Profile}/>
 
     </Switch>
    <Footer/>
