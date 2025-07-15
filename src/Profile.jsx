@@ -7,7 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 export default function Profile() {
-  const { getJwt } = useJwt();
+  const { getJwt,clearJwt } = useJwt();
   const [initialValues, setInitialValues] = useState({
     name: '',
     email: '',
@@ -79,6 +79,20 @@ export default function Profile() {
     salutation: Yup.string(),
     country: Yup.string(),
   });
+
+  const handleDeleteAccount = async () => {
+    const confirmDelete = confirm("Are you sure")
+    if(confirmDelete){
+      axios.delete(import.meta.env.VITE_API_URL + '/api/users/me', {
+        headers:{
+          Authorization: "Bearer " + token
+        }
+      })
+      showFlashMessage("Your Account Has Been Deleted", "success");
+      setLocation('/');
+      clearJwt();
+    }
+  }
 
   return (<>
 
@@ -154,7 +168,7 @@ export default function Profile() {
               <button type="submit" className="btn btn-primary mb-2 mt-2" disabled={formik.isSubmitting}>
                 {formik.isSubmitting ? 'Updating...' : 'Update Profile'}
               </button>
-
+            <a className="btn btn-danger me-2 ms-2 mb-2 mt-2" onClick={handleDeleteAccount}>Delete</a>
             </Form>
           )
         }
