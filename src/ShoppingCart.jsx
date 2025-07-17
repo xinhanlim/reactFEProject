@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useCart } from './CartStore'
-import {useJwt} from './UserStore'
+import { userEffect } from 'react'
+import axios from 'axios'
 
 const ShoppingCart = () => {
 
-    const { cart, getCartTotal, modifyQuantity, removeCart } = useCart();
-    const {getJwt} = useJwt();
+    const { cart, getCartTotal, modifyQuantity, removeCart, fetchRemoteCart } = useCart();
+
+    useEffect(()=>{
+        fetchRemoteCart();
+    },[])
+
     return <div className="container mt-4" >
         <h2>Shopping Cart</h2>
         {cart.length === 0 ? (

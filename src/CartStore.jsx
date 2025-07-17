@@ -1,4 +1,7 @@
+import axios from 'axios';
 import { atom, useAtom } from 'jotai'
+import { useJwt } from './UserStore'
+import { useFlashMessage } from './FlashMessageStore';
 
 const initialCart = [
     // {
@@ -16,6 +19,38 @@ export const cartAtom = atom(initialCart);
 
 export const useCart = () => {
     const [cart, setCart] = useAtom(cartAtom);
+    const {getJwt} = useJwt();
+    const {showFlashMessage} = useFlashMessage();
+
+    const fetchRemoteCart= async () =>{
+        const jwt = getJwt();
+        const response = await axios.get(import.meta.env.VITE_API_URL+ "/api/cart",{
+            headers: {
+                Authorization: "Bearer " + jwt
+            }
+        })
+        .catch((e)=>{
+            console.error(e)
+        })
+        setCart(response.data);
+    }
+
+    const updateRemoteCart = async (modifyQuantity) => {
+        const jwt = getJwt();
+        const cartData = modifyQuantity.map(cartItem => ({
+            product_id:cartItem.product_id,
+            quantity:cartItem.quantity 
+    }));
+    await axios.put(import.meta.env.VITE_API_URL + "/api/cart", {cartItems: cartData},{
+        headers:{
+            Authorization: "Bearer " + jwt
+        }
+    })
+        .catch(e => {
+            console.error(e);
+            showFlashMessage("Error Updating The Cart", "danger")
+        })
+    }
 
     const getCartTotal = () => {
         return cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
@@ -36,13 +71,14 @@ export const useCart = () => {
 
             const cloned = [...cart, newCartItem]
             setCart(cloned)
+            updateRemoteCart(cloned)
         } 
         else {
             modifyQuantity(exisitingCart.product_id, exisitingCart.quantity + 1)
         }
     }
 
-    const modifyQuantity = (product_id, quantity) => {
+    const modifyQuantity = async (product_id, quantity) => {
         if(quantity < 1){
             return;
         }
@@ -56,6 +92,7 @@ export const useCart = () => {
             }
         })
         setCart(cloned);
+        updateRemoteCart(cloned)
 
     
     }
@@ -64,13 +101,15 @@ export const useCart = () => {
         const exisitingCart = cart.find(ec => ec.product_id === product_id);
         const cloned = cart.filter(cci => cci.product_id !== exisitingCart.product_id)
         setCart(cloned);
+        updateRemoteCart(cloned)
     }
     return {
         cart,
         getCartTotal,
         addToCart,
         modifyQuantity,
-        removeCart
+        removeCart,
+        fetchRemoteCart
     }
 }
 
