@@ -11,6 +11,28 @@ const ShoppingCart = () => {
         fetchRemoteCart();
     },[])
 
+    const {getJwt} = useJwt();
+    
+    const handleCheckout = async () =>{
+        const jwt = getJwt();
+        try{
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/checkout`,
+                [],
+                {
+                    headers:{
+                        Authorization: `Bearer ${jwt}`
+                    }
+                }
+            );
+            window.location.href = response.data.url;
+        }catch(e){
+            console.log(e);
+            alert('Checkout Failed. Please Try Again Later')
+        }
+
+    }
+
     return <div className="container mt-4" >
         <h2>Shopping Cart</h2>
         {cart.length === 0 ? (
@@ -53,6 +75,10 @@ const ShoppingCart = () => {
                 </ul>
                 <div className="mt-3 mb-3 text-end">
                     <h4>Total: ${getCartTotal()}</h4>
+                    <button className = "btn btn-primary mt-2"
+                    onClick = {handleCheckout}>
+                        Checkout
+                    </button>
                 </div>
             </>
         )
