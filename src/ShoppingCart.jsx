@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react'
 import { useCart } from './CartStore'
-import { userEffect } from 'react'
 import axios from 'axios'
+import { useJwt } from './UserStore' 
 
 const ShoppingCart = () => {
 
     const { cart, getCartTotal, modifyQuantity, removeCart, fetchRemoteCart } = useCart();
+    const { getJwt } = useJwt
 
     useEffect(()=>{
         fetchRemoteCart();
     },[])
 
-    const {getJwt} = useJwt();
-    
     const handleCheckout = async () =>{
         const jwt = getJwt();
         try{
