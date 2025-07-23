@@ -6,7 +6,7 @@ import { useJwt } from './UserStore'
 const ShoppingCart = () => {
 
     const { cart, getCartTotal, modifyQuantity, removeCart, fetchRemoteCart } = useCart();
-    const { getJwt } = useJwt
+    const { getJwt } = useJwt();
 
     useEffect(()=>{
         fetchRemoteCart();
@@ -16,15 +16,15 @@ const ShoppingCart = () => {
         const jwt = getJwt();
         try{
             const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/api/checkout`,
-                [],
+                import.meta.env.VITE_API_URL + '/api/checkout',
+                {},
                 {
                     headers:{
                         Authorization: `Bearer ${jwt}`
                     }
                 }
             );
-            window.location.href = response.data.url;
+            window.location = response.data.url;
         }catch(e){
             console.log(e);
             alert('Checkout Failed. Please Try Again Later')
