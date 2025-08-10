@@ -2,8 +2,8 @@
 E-commerce => ( React + MySQL ) 
 
 ## Demo
-- Frontend repo: https://github.com/you/frontend](https://github.com/xinhanlim/reactFEProject
-- Backend repo: https://github.com/you/backend](https://github.com/xinhanlim/reactBEProject
+- Frontend repo: https://github.com/xinhanlim/reactFEProject
+- Backend repo: https://github.com/xinhanlim/reactBEProject
 
 ## Features
 - Showcasing Products
