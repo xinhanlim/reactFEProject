@@ -7,7 +7,7 @@ E-commerce => ( React + MySQL )
 
 ## Features
 - Showcasing Products
-- User auth (JWT): register, login, protected routes
+- User auth (JWT): register, login, shopping cart
 - Shopping cart (add/update/remove)
 - Orders (create & view)
 - Payments - (Stripe)
