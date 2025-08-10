@@ -6,9 +6,12 @@ E-commerce => ( React + MySQL )
 - Backend repo: https://github.com/you/backend](https://github.com/xinhanlim/reactBEProject
 
 ## Features
-- ✅ Feature A (what value it gives)
-- ✅ Feature B
-- ✅ Auth / Payments / etc.
+- Showcasing Products
+- User auth (JWT): register, login, protected routes
+- Shopping cart (add/update/remove)
+- Orders (create & view)
+- Payments - (Stripe)
+
 
 ## Tech Stack
 **Frontend:** React, 
