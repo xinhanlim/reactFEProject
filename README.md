@@ -1,12 +1,28 @@
-## Bugs Encountered:
-const exisitingCartItem = cart.find(currentItem => currentItem.product_id === product_id)
-        const clonedCartItem = {...exisitingCartItem, "quantity": quantity};
-        const cloned = cart.map(currentCartItem => {
-            if(currentCartItem.product_id !== clonedCartItem.product_id){
-                return currentCartItem
-            } else {
-                return clonedCartItem;
-            }
+# Project Name
+E-commerce => ( React + MySQL ) 
 
-When i use if(currentCartItem.id !== clonedCartitem.id),
-if i add new product and say user want to add quantity, the other products will follow the newly added product. that why its best to specically use currentCartItem.product_id to actually draw the item out
+## Demo
+- Frontend repo: https://github.com/you/frontend](https://github.com/xinhanlim/reactFEProject
+- Backend repo: https://github.com/you/backend](https://github.com/xinhanlim/reactBEProject
+
+## Features
+- ✅ Feature A (what value it gives)
+- ✅ Feature B
+- ✅ Auth / Payments / etc.
+
+## Tech Stack
+**Frontend:** React, 
+**Backend:** Node.js, Express  
+**Database:** MySQL 
+**Other:** JWToken, Stripe,
+
+##Frontend Commands:
+npm run dev
+
+### Environment Variables
+Create a `.env` file (example below). Never commit secrets.
+
+```bash
+VITE_API_URL=https://bug-free-barnacle-7vpjjvq4wq472w6ww-3000.app.github.dev
+
+
