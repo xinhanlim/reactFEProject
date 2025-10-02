@@ -13,7 +13,7 @@ const ShoppingCart = () => {
    const [_, setLocation] = useLocation();
 
     useEffect(()=>{
-        fetchRemoteCart();
+     fetchRemoteCart();
     },[])
 
     const handleCheckout = async () =>{
@@ -22,7 +22,6 @@ const ShoppingCart = () => {
         try{
             const response = await axios.post(
                 import.meta.env.VITE_API_URL + '/api/checkout',
-                {},
                 {
                     headers:{
                         Authorization: `Bearer ${jwt}`

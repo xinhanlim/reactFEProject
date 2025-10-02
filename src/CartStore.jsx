@@ -21,8 +21,6 @@ export const cartAtom = atom(initialCart);
 export const useCart = () => {
     const [cart, setCart] = useAtom(cartAtom);
     const {getJwt} = useJwt();
-    const {showFlashMessage} = useFlashMessage();
-    const [_, setLocation] = useLocation();
 
     const fetchRemoteCart= async () =>{
         const jwt = getJwt();
