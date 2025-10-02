@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'wouter'
 import { useJwt } from './UserStore'
+import { useFlashMessage } from './FlashMessageStore'
 
 
 
 
 const Navbar = () => {
   const [isNavbarShowing, setNavbarShowing] = useState(false);
+  const {showFlashMessage} = useFlashMessage();
   const toggleNavbar = () => {
     setNavbarShowing(!isNavbarShowing)
   }
@@ -17,7 +19,9 @@ const Navbar = () => {
 
   const handleLogout = () => {
     clearJwt();
+    showFlashMessage("You Have Logout successfully","success")
     setLocation('/')
+    
   }
   return (
     <>

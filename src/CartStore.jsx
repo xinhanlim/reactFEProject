@@ -2,6 +2,7 @@ import axios from 'axios';
 import { atom, useAtom } from 'jotai'
 import { useJwt } from './UserStore'
 import { useFlashMessage } from './FlashMessageStore';
+import { useLocation } from 'wouter'
 
 const initialCart = [
     // {
@@ -21,6 +22,7 @@ export const useCart = () => {
     const [cart, setCart] = useAtom(cartAtom);
     const {getJwt} = useJwt();
     const {showFlashMessage} = useFlashMessage();
+    const [_, setLocation] = useLocation();
 
     const fetchRemoteCart= async () =>{
         const jwt = getJwt();
@@ -48,7 +50,6 @@ export const useCart = () => {
     })
         .catch(e => {
             console.error(e);
-            showFlashMessage("Error Updating The Cart", "danger")
         })
     }
 

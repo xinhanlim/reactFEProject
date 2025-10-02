@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import { useCart } from './CartStore'
 import axios from 'axios'
 import { useJwt } from './UserStore' 
+import { useFlashMessage } from './FlashMessageStore'
 
 const ShoppingCart = () => {
 
     const { cart, getCartTotal, modifyQuantity, removeCart, fetchRemoteCart } = useCart();
     const { getJwt } = useJwt();
+    const {showFlashMessage} = useFlashMessage();
 
     useEffect(()=>{
         fetchRemoteCart();
@@ -14,6 +16,7 @@ const ShoppingCart = () => {
 
     const handleCheckout = async () =>{
         const jwt = getJwt();
+        
         try{
             const response = await axios.post(
                 import.meta.env.VITE_API_URL + '/api/checkout',
@@ -27,7 +30,7 @@ const ShoppingCart = () => {
             window.location = response.data.url;
         }catch(e){
             console.log(e);
-            alert('Checkout Failed. Please Try Again Later')
+            showFlashMessage("Please Register/Login before checking out ", "danger")
         }
 
     }
