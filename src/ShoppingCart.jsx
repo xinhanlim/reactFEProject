@@ -3,12 +3,14 @@ import { useCart } from './CartStore'
 import axios from 'axios'
 import { useJwt } from './UserStore' 
 import { useFlashMessage } from './FlashMessageStore'
+import { useLocation } from 'wouter';
 
 const ShoppingCart = () => {
 
     const { cart, getCartTotal, modifyQuantity, removeCart, fetchRemoteCart } = useCart();
     const { getJwt } = useJwt();
     const {showFlashMessage} = useFlashMessage();
+   const [_, setLocation] = useLocation();
 
     useEffect(()=>{
         fetchRemoteCart();
@@ -30,6 +32,7 @@ const ShoppingCart = () => {
             window.location = response.data.url;
         }catch(e){
             console.log(e);
+            setLocation('/login')
             showFlashMessage("Please Register/Login before checking out ", "danger")
         }
 
