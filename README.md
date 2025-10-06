@@ -39,7 +39,7 @@ npm run dev
 - Props let a parent component pass data and callbacks down to a child component. 
 - Below is a simple ProductCard that receives image, name, price, and an onAddToCart handler via props.
 
-- Child Component: `ProductCard`
+1) Child Component: `ProductCard`
 ```bash
 export default function ProductCard(props){
     return (
@@ -60,6 +60,8 @@ export default function ProductCard(props){
 ```
 - having `ProductCard()` with `(props)` as a variable to be passed on to the parents.
 - so that can use in the parent component
+
+2) Parent Component: `ProductPage`
 ```bash
  {
           products.map(p => (
