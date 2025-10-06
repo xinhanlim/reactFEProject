@@ -35,7 +35,7 @@ npm run dev
 
 ## Lesson Learned:
 
-- Props 
+- How to use Props 
 ```bash
 export default function ProductCard(props){
     return (
@@ -53,6 +53,23 @@ export default function ProductCard(props){
     </>
     );
 }
+```
 
+```bash
+ {
+          products.map(p => (
+            <div key={p.id} className="col-md-4 mb-4">
+              <ProductCard
+                image={p.image}
+                name={p.name}
+                price={p.price.toFixed(2)}
+                onAddToCart={() => {
+                  handleAddToCart(p)
+                }}
+              />
+            </div>
+          )
+          )
+        }
 ```
 
