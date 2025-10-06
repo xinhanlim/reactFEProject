@@ -38,7 +38,7 @@ npm run dev
 ### 1. Understanding `.map` 
 <details><summary>Expand</summary>
 
-- .map() always returns a new array (same length as original) but it don't change the original array.
+- .map() always returns a new array (same length as original) but it `DON'T CHANGE` the original array.
 ```js
 // setProducts(response.data) => update the state => React Re-render
 useEffect(() => {
