@@ -119,3 +119,27 @@ export default function ProductCard(props){
 ```
 </details>
 
+### 3. Using of State Management: `ProductPage` 
+- State Management helps to change the variable and re-render it.
+```js
+// calling useState from 'react'
+// having 2 variables, `products` being the initial state where the `setProduct` is the state that been changed 
+ const [products, setProducts] = useState([]);
+
+// Using useEffect because axios and data fetching is out of react control, can be called as side-effect
+// When the request resolves, setProducts(...) updates state,
+// and React re-renders with the new products.
+ useEffect(() => {
+    try {
+      const fetchProducts = async () => {
+        const response = await axios.get(import.meta.env.VITE_API_URL + "/api/products");
+        setProducts(response.data);
+      }
+      fetchProducts();
+    } catch (e) {
+      console.log("error", e);
+    }
+  }, []);
+```
+
+
