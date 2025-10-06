@@ -92,7 +92,7 @@ export default function ProductCard(props){
 - When user Login Successful, `Login` will be changed to `Logout` 
 
 ```js
-// Get the jwt token using our helpers
+// Get the jwt token using our helpers from useJwt()
   const { getJwt, clearJwt } = useJwt();
   const jwt = getJwt();
 // if jwt is present/true render the first `(...)` if not render the next `(...)`
