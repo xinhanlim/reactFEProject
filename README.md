@@ -82,7 +82,7 @@ useEffect(() => {
 <details><summary>Expand</summary>
 
 - Props let a parent component pass data and callbacks down to a child component. 
-- Below is a simple ProductCard that receives image, name, price, and an onAddToCart handler via props.
+- Below  ProductCard receives image, name, price, and an onAddToCart handler via props.
 
 ```bash
 ## Child Component: `ProductCard`
