@@ -35,7 +35,7 @@ npm run dev
 
 ## Lesson Learned:
 
-### Using `Props` with ProductCard
+### 1. Using `Props` with ProductCard
 <details><summary>Expand</summary>
 - Props let a parent component pass data and callbacks down to a child component. 
 - Below is a simple ProductCard that receives image, name, price, and an onAddToCart handler via props.
@@ -84,3 +84,36 @@ export default function ProductCard(props){
 - The parent passes props down to the child (image, name, price, onAddToCart).
 - Each list item gets a stable key={p.id} to help React track elements.
 </details>
+
+### 2.Condition Rendering for `Navbar`
+- Conditional rendering lets you show/hide UI based on state or props.
+- Taking for this case, `Login` shown in navbar when user has not login
+- When user Login Successful, `Login` will be changed to `Logout` 
+
+```js
+// Get the jwt token using our helpers
+  const { getJwt, clearJwt } = useJwt();
+  const jwt = getJwt();
+  // if jwt is present/true render the first `(...)` if not render the next `(...)`
+{jwt ? (  
+        <>
+        <li className="nav-item">
+            <Link href="/profile" className={`nav-link ${location === '/Profile' ? 'active' : ''}`}>Profile</Link>
+            </li>
+            <li className="nav-item">
+            <button onClick={handleLogout} className="btn btn-link nav-link">Logout</button>
+            </li>
+         </>
+        ) : (
+        <>
+            <li className="nav-item">
+            <Link href="/RegisterPage" className={`nav-link ${location === '/RegisterPage' ? 'active' : ''}`}>Register</Link>
+            </li>
+            <li className="nav-item">
+            <Link href="/login" className={`nav-link ${location === '/login' ? 'active' : ''}`}>Login</Link>
+            </li>
+        </>
+        )
+}
+```
+
