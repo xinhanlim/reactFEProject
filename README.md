@@ -31,7 +31,11 @@ VITE_API_URL=<your_backend_codespace_url>.app.github.dev
 ```bash
 npm run dev
 ```
+## Screenshot
 
+![img](public/project2image.png)
+![img](public/project2image.2.png)
+![img](public/project2image.4.png)
 
 ## Lesson Learned:
 
