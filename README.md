@@ -38,9 +38,9 @@ npm run dev
 ### Using `Props` with ProductCard
 - Props let a parent component pass data and callbacks down to a child component. 
 - Below is a simple ProductCard that receives image, name, price, and an onAddToCart handler via props.
-
-1) Child Component: `ProductCard`
+- 
 ```bash
+## Child Component: `ProductCard`
 export default function ProductCard(props){
     return (
       <>
@@ -61,8 +61,9 @@ export default function ProductCard(props){
 - having `ProductCard()` with `(props)` as a variable to be passed on to the parents.
 - so that can use in the parent component
 
-2) Parent Component: `ProductPage`
+
 ```bash
+#2) Parent Component: `ProductPage`
  {
           products.map(p => (
             <div key={p.id} className="col-md-4 mb-4">
