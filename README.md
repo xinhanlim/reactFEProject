@@ -63,7 +63,7 @@ export default function ProductCard(props){
 
 
 ```bash
-#2) Parent Component: `ProductPage`
+## Parent Component: `ProductPage`
  {
           products.map(p => (
             <div key={p.id} className="col-md-4 mb-4">
