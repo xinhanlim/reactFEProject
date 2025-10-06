@@ -86,6 +86,7 @@ export default function ProductCard(props){
 </details>
 
 ### 2.Condition Rendering for `Navbar`
+<details><summary>Expand</summary>
 - Conditional rendering lets you show/hide UI based on state or props.
 - Taking for this case, `Login` shown in navbar when user has not login
 - When user Login Successful, `Login` will be changed to `Logout` 
@@ -116,4 +117,5 @@ export default function ProductCard(props){
         )
 }
 ```
+</details>
 
