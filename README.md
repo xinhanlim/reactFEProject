@@ -28,7 +28,7 @@ VITE_API_URL=<your_backend_codespace_url>.app.github.dev
 ```
 
 3) Run Commands:
-S
+
 `npm run dev`
 
 
