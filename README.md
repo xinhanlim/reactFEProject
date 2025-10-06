@@ -36,6 +36,7 @@ npm run dev
 ## Lesson Learned:
 
 ### 1. Using `Props` with ProductCard
+
 <details><summary>Expand</summary>
 - Props let a parent component pass data and callbacks down to a child component. 
 - Below is a simple ProductCard that receives image, name, price, and an onAddToCart handler via props.
@@ -87,6 +88,7 @@ export default function ProductCard(props){
 
 ### 2.Condition Rendering for `Navbar`
 <details><summary>Expand</summary>
+
 - Conditional rendering lets you show/hide UI based on state or props.
 - Taking for this case, `Login` shown in navbar when user has not login
 - When user Login Successful, `Login` will be changed to `Logout` 
@@ -120,7 +122,10 @@ export default function ProductCard(props){
 </details>
 
 ### 3. Using of State Management: `ProductPage` 
+<details><summary>Expand</summary>
+
 - State Management helps to change the variable and re-render it.
+  
 ```js
 // calling useState from 'react'
 // having 2 variables, `products` being the initial state where the `setProduct` is the state that been changed 
@@ -141,5 +146,5 @@ export default function ProductCard(props){
     }
   }, []);
 ```
-
+</details>
 
