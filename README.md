@@ -94,7 +94,7 @@ export default function ProductCard(props){
 // Get the jwt token using our helpers
   const { getJwt, clearJwt } = useJwt();
   const jwt = getJwt();
-  // if jwt is present/true render the first `(...)` if not render the next `(...)`
+// if jwt is present/true render the first `(...)` if not render the next `(...)`
 {jwt ? (  
         <>
         <li className="nav-item">
