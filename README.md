@@ -1,31 +1,32 @@
-# Project Name
-E-commerce => ( React + MySQL ) 
+# Ecommerce — Front-End Assignment
+- React application
+- Back-End: https://github.com/xinhanlim/reactBEProject
 
-## Demo
-- Frontend repo: https://github.com/xinhanlim/reactFEProject
-- Backend repo: https://github.com/xinhanlim/reactBEProject
+## Features:
+- Full `CRUD` functionality for `shopping cart` & `users`
+- `Automated calculation` of `currency` when items quantity changes in cart
+- Responsive UI for mobile web view
+- User authentication with JWT-based login 
 
-## Features
-- Showcasing Products
-- User auth (JWT): register, login, shopping cart
-- Shopping cart (add/update/remove)
-- Orders (create & view)
-- Payments - (Stripe)
+## Tech Stack:
+- Frontend: React, Wouter, Jotai, Axios, Formik, Yup
+
+- Backend: Node.js, Express, `Mysql2/Promise` , JWT, bcrypt, CORS, Stripe
+
+- Dev & Build: Vite, Nodemon
 
 
-## Tech Stack
-**Frontend:** React, 
-**Backend:** Node.js, Express  
-**Database:** MySQL 
-**Other:** JWToken, Stripe,
-
-###Frontend Commands:
-npm run dev
-
-### Environment Variables
-Create a `.env` file (example below). Never commit secrets.
-
+## Getting Started:
+1) Clone & install
 ```bash
-VITE_API_URL=https://bug-free-barnacle-7vpjjvq4wq472w6ww-3000.app.github.dev
+git clone https://github.com/xinhanlim/reactFEProject.git
+cd reactFEProject
+```
+2) Environment variables
+```bash
+VITE_API_URL=<your_backend_codespace_url>.app.github.dev
+```
 
+3) Run Commands:
+`npm run dev`
 
