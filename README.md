@@ -1,5 +1,5 @@
 # Ecommerce — Front-End Assignment
-- React application
+- Ecommerce - React application 
 - Back-End: https://github.com/xinhanlim/reactBEProject
 
 ## Features:
@@ -28,5 +28,6 @@ VITE_API_URL=<your_backend_codespace_url>.app.github.dev
 ```
 
 3) Run Commands:
+S
 `npm run dev`
 
