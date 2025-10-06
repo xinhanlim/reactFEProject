@@ -101,7 +101,7 @@ export default function ProductCard(props){
 ```
 - having `ProductCard()` with `(props)` as a variable to be passed on to the parents.
 - so that can use in the parent component
-- 
+
 ```bash
 ## Parent Component: `ProductPage`
  {
