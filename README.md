@@ -35,9 +35,48 @@ npm run dev
 
 ## Lesson Learned:
 
-### 1. Using `Props` with ProductCard
+### 1. Understanding `.map` 
+<details><summary>Expand</summary>
+
+- .map() always returns a new array (same length as original) but it don't change the original array.
+```js
+// setProducts(response.data) => update the state => React Re-render
+useEffect(() => {
+    try {
+      const fetchProducts = async () => {
+        const response = await axios.get(import.meta.env.VITE_API_URL + "/api/products");
+        setProducts(response.data);
+      }
+      fetchProducts();
+    } catch (e) {
+      console.log("error", e);
+    }
+  }, []);
+
+//On that re-render, JSX runs again and .map() is executed during render to produce the list of <ProductCard /> elements.
+{
+          products.map(p => (
+            <div key={p.id} className="col-md-4 mb-4">
+              <ProductCard
+                image={p.image}
+                name={p.name}
+                price={p.price.toFixed(2)}
+                onAddToCart={() => {
+                  handleAddToCart(p)
+                }}
+              />
+            </div>
+          )
+          )
+        }
+```
+
+</details>
+
+### 2. Using `Props` with ProductCard
 
 <details><summary>Expand</summary>
+
 - Props let a parent component pass data and callbacks down to a child component. 
 - Below is a simple ProductCard that receives image, name, price, and an onAddToCart handler via props.
 
@@ -86,7 +125,7 @@ export default function ProductCard(props){
 - Each list item gets a stable key={p.id} to help React track elements.
 </details>
 
-### 2.Condition Rendering for `Navbar`
+### 3.Condition Rendering for `Navbar`
 <details><summary>Expand</summary>
 
 - Conditional rendering lets you show/hide UI based on state or props.
@@ -121,7 +160,7 @@ export default function ProductCard(props){
 ```
 </details>
 
-### 3. Using of State Management: `ProductPage` 
+### 4. Using of State Management: `ProductPage` 
 <details><summary>Expand</summary>
 
 - State Management helps to change the variable and re-render it.
